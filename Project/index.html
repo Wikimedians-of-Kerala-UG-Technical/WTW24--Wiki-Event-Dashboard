@@ -7,66 +7,16 @@
   <!-- AdminLTE CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <!-- Font Awesome -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Small box icon size and hover effect */
     .small-box .icon {
       top: 10px;
-      font-size: 50px;
+      font-size: 60px;
     }
-
-    /* Header styling */
     .main-header {
       text-align: center;
-    }
-
-    /* Participant list styling */
-    #participantsList {
-      max-height: 300px;
-      overflow-y: auto;
-    }
-
-    /* Hover effect for small-box */
-    .small-box:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    /* Calendar section background gradient */
-    .card.bg-success-gradient {
-      background: linear-gradient(135deg, #1e7e34, #218838);
-      color: white;
-    }
-
-    /* Modal animation on entry */
-    .modal.fade .modal-dialog {
-      transform: translate(0, -50%);
-      transition: transform 0.3s ease-out;
-    }
-
-    .modal.fade.show .modal-dialog {
-      transform: translate(0, 0);
-    }
-
-    /* Data table styles */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #f1f1f1;
     }
   </style>
 </head>
@@ -129,12 +79,12 @@
               <div class="icon">
                 <i class="fas fa-calendar-day"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="days.html" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
           <div class="col-lg-3 col-6">
-            <div class="small-box bg-success" id="participantsBox">
+            <div class="small-box bg-success">
               <div class="inner">
                 <h3>120</h3>
                 <p>Participants</p>
@@ -142,7 +92,7 @@
               <div class="icon">
                 <i class="fas fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">View Participants <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="participants.html" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -155,23 +105,22 @@
               <div class="icon">
                 <i class="fas fa-chalkboard-teacher"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="presentations.html" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
           <div class="col-lg-3 col-6">
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>250</h3>
+                <h3>3</h3>
                 <p>Photographs</p>
               </div>
               <div class="icon">
                 <i class="fas fa-camera"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="photographs.html" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        </div>
 
         <div class="row">
           <!-- Chart Section -->
@@ -181,7 +130,7 @@
                 <h3 class="card-title"><i class="fas fa-chart-pie mr-1"></i> Event Data</h3>
               </div>
               <div class="card-body">
-                <canvas id="salesChart" height="150"></canvas>
+                <canvas id="salesChart" height="500"></canvas>
               </div>
             </div>
           </section>
@@ -199,24 +148,36 @@
               </div>
             </div>
           </section>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- Participants Modal -->
-<div class="modal fade" id="participantsModal" tabindex="-1" aria-labelledby="participantsModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="participantsModalLabel">Participants</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <ul id="participantsList" class="list-group">
-          <!-- Participant names will be dynamically inserted here -->
-        </ul>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      events: [
+        {
+          title: 'Event 1',
+          start: '2024-12-15',
+          end: '2024-12-17'
+        },
+        {
+          title: 'Event 2',
+          start: '2024-12-20'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+</script>
+        </div>
       </div>
     </div>
   </div>
@@ -226,35 +187,8 @@
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Event Listener for Participants Box
-  document.getElementById('participantsBox').addEventListener('click', async () => {
-    const participantsList = document.getElementById('participantsList');
-    participantsList.innerHTML = '<li class="list-group-item">Loading participants...</li>'; // Show loading
 
-    try {
-      // Simulate participant data with event details
-      const participants = [
-        { name: 'Alice John', event: 'Workshop on Open Data' },
-        { name: 'Ancy Chacko', event: 'Wikipedia Editing Marathon' },
-        { name: 'Catherine Jacob', event: 'Photo Walk & Upload' },
-        { name: 'David Daniel', event: 'Panel Discussion on Free Knowledge' },
-        { name: 'Emily Davis', event: 'Introduction to Wikimedia Commons' }
-      ]; // Replace with API fetch if needed
-
-      // Populate the modal with participants and their events
-      participantsList.innerHTML = participants.map(participant => `
-        <li class="list-group-item">
-          <strong>${participant.name}</strong> - <em>${participant.event}</em>
-        </li>
-      `).join('');
-
-      // Show modal
-      new bootstrap.Modal(document.getElementById('participantsModal')).show();
-    } catch (error) {
-      participantsList.innerHTML = '<li class="list-group-item">Error loading participants.</li>';
-    }
-  });
-
+  
   // Chart.js Example
   const ctx = document.getElementById('salesChart').getContext('2d');
   new Chart(ctx, {
@@ -270,5 +204,32 @@
     }
   });
 </script>
+<script>
+  async function fetchWikimediaData() {
+    try {
+      const response = await fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=events&format=json&origin=*');
+      const data = await response.json();
+
+      // Example: Process and log search results
+      console.log(data.query.search);
+
+      // Update the dashboard dynamically
+      const participantsBox = document.querySelector('.small-box.bg-success .inner h3');
+      participantsBox.textContent = data.query.search.length; // Example: Update participants with search results count
+
+      const presentationsBox = document.querySelector('.small-box.bg-warning .inner h3');
+      presentationsBox.textContent = Math.floor(Math.random() * 20) + 1; // Dummy data for presentations
+
+      // You can add more updates to other sections using API results
+    } catch (error) {
+      console.error('Error fetching Wikimedia data:', error);
+    }
+  }
+
+  // Call the function to fetch and display data
+  fetchWikimediaData();
+</script>
 </body>
 </html>
+
+
